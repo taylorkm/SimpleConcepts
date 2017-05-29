@@ -15,14 +15,8 @@ class Vectors():
     self.fig.canvas.mpl_connect( 'motion_notify_event', self.onmotion )
     self.fig.canvas.mpl_connect( 'button_release_event', self.onrelease )
 
-  def onpick(self,event):
-    # thisline = event.artist
-    # xdata = thisline.get_xdata()
-    # ydata = thisline.get_ydata()
-    # print (xdata[1],ydata[1])
+  def onpick(self,event):    
     self.pressed = True
-    
-    
 
   def onrelease(self, event):
     self.pressed = False
@@ -31,7 +25,6 @@ class Vectors():
   def onmotion(self, event):
     if self.pressed is False:
       return
-    # print(event.xdata,event.ydata)
     x = np.array( [[event.xdata],[event.ydata]] )
     b = np.dot(A, x)
     
@@ -39,10 +32,6 @@ class Vectors():
     self.iv.set_data([0,x[0]],[0,x[1]])
     self.ov.set_data([0,b[0]],[0,b[1]])
     self.fig.canvas.draw()
-
-
-class OutputVector(): 
-  pass
 
 
 # Define the 2-by-2 array
